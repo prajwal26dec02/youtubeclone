@@ -8,6 +8,7 @@ function DescribeChannel({ Cid, setEditCreateChannelBtn, setVidUploadPage }) {
   const currentChannel = channels.filter((c) => c._id === Cid)[0];
 
   const CurrentUser = useSelector((state) => state?.CurrentUserReducer);
+  console.log(CurrentUser);
   return (
     <div className="container3_channel">
       <div className="channel_logo_channel">
@@ -34,6 +35,12 @@ function DescribeChannel({ Cid, setEditCreateChannelBtn, setVidUploadPage }) {
           >
             <FaUpload />
             <b>Upload Video</b>
+          </p>
+          <p className="points">
+            Points:{" "}
+            {CurrentUser.data
+              ? CurrentUser.data.points
+              : CurrentUser.result.points}
           </p>
         </>
       )}

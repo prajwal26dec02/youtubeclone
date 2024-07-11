@@ -87,6 +87,12 @@ function LikeWatchLaterSaveBtns({ vv, vid }) {
             Like: lk + 1,
           })
         );
+        dispatch(
+          addToLikedVideo({
+            videoId: vid,
+            Viewer: CurrentUser?.result._id,
+          })
+        );
         setDislikeBtn(false);
       }
     } else {

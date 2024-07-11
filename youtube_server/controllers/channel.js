@@ -38,3 +38,26 @@ export const getAllChannels = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+export const updatePoints = async (req, res) => {
+  const { id: _id } = req.params;
+  // console.log(id);
+  try {
+    const file = await users.findById(_id);
+    const pts = file.points;
+    const updatePts = await users.findByIdAndUpdate(
+      _id,
+      {
+        $set: {
+          points: pts + 5,
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(updatePts);
+    // console.log("Points updated - Server");
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+    // console.log(error);
+  }
+};

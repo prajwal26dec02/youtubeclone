@@ -46,7 +46,7 @@ function Navbar({ toggleDrawer, setEditCreateChannelBtn }) {
   //     joinedOn: "2222-07-15T09:57:23.489Z",
   //   },
   // };
-  console.log(CurrentUser);
+  // console.log(CurrentUser);
   return (
     <>
       <div className="Container_Navbar">

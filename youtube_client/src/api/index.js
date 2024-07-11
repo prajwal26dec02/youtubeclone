@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: `http://localhost:5500/` });
+const API = axios.create({
+  baseURL: `http://localhost:5500/`,
+});
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("Profile")) {
@@ -50,3 +52,7 @@ export const deleteComment = (id) => API.delete(`/comment/delete/${id}`);
 export const editComment = (id, commentBody) =>
   API.patch(`/comment/edit/${id}`, { commentBody });
 export const getAllComment = () => API.get("/comment/get");
+
+export const addPoints = (id) => {
+  return API.patch(`/user/updatePoints/${id}`);
+};

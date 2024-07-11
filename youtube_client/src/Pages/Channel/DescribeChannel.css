@@ -27,7 +27,8 @@
   font-size: large;
 }
 .editbtn_channel,
-.uploadbtn_channel {
+.uploadbtn_channel,
+.points {
   position: absolute;
   top: 0.5rem;
   right: 1rem;
@@ -41,6 +42,11 @@
 }
 .uploadbtn_channel {
   top: 4rem;
+}
+.points {
+  top: 8rem;
+  background-color: transparent;
+  cursor: auto;
 }
 .editbtn_channel:hover,
 .uploadbtn_channel:hover {

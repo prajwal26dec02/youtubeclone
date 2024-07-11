@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 // import vid from "../../Components/Video/vid.mp4";
 import "./VideoPage.css";
 import LikeWatchLaterSaveBtns from "./LikeWatchLaterSaveBtns";
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { addToHistory } from "../../actions/History";
 import { viewVideo } from "../../actions/video";
+import { addPoints } from "../../actions/points";
 
 function VideoPage() {
   const { vid } = useParams();
@@ -41,12 +42,43 @@ function VideoPage() {
     }
     handleViews();
   }, []);
+  const videoRef = useRef(null);
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    const handlePlay = () => {
+      console.log("Video started");
+      console.log(`Video ID: ${vv?._id}`);
+    };
+
+    const handleEnded = () => {
+      console.log("Video ended");
+      console.log(`Video ID: ${vv?._id}`);
+      dispatch(
+        addPoints({
+          id: CurrentUser?.result._id,
+        })
+      );
+    };
+
+    if (videoElement) {
+      videoElement.addEventListener("play", handlePlay);
+      videoElement.addEventListener("ended", handleEnded);
+    }
+
+    return () => {
+      if (videoElement) {
+        videoElement.removeEventListener("play", handlePlay);
+        videoElement.removeEventListener("ended", handleEnded);
+      }
+    };
+  }, [vid]);
   return (
     <>
       <div className="container_videoPage">
         <div className="container2_videoPage">
           <div className="video_display_screen_videoPage">
             <video
+              ref={videoRef}
               src={`http://localhost:5500/${vv?.filePath}`}
               className="video_ShowVideo_videoPage"
               controls
