@@ -53,6 +53,6 @@ export const editComment = (id, commentBody) =>
   API.patch(`/comment/edit/${id}`, { commentBody });
 export const getAllComment = () => API.get("/comment/get");
 
-export const addPoints = (id) => {
-  return API.patch(`/user/updatePoints/${id}`);
+export const addPoints = (videoId, id) => {
+  return API.patch(`/user/updatePoints/${id}`, { videoId });
 };

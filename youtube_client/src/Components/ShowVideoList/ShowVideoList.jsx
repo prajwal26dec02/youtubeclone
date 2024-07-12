@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 function ShowVideoList({ videoId }) {
   const vids = useSelector((s) => s.videoReducer);
-  console.log(vids);
+  // console.log(vids);
   // const vids = [
   //   {
   //     _id: 1,

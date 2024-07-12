@@ -36,12 +36,6 @@ function VideoPage() {
       })
     );
   };
-  useEffect(() => {
-    if (CurrentUser) {
-      handleHistory();
-    }
-    handleViews();
-  }, []);
   const videoRef = useRef(null);
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -55,9 +49,14 @@ function VideoPage() {
       console.log(`Video ID: ${vv?._id}`);
       dispatch(
         addPoints({
+          videoId: vid,
           id: CurrentUser?.result._id,
         })
       );
+      if (CurrentUser) {
+        handleHistory();
+      }
+      handleViews();
     };
 
     if (videoElement) {

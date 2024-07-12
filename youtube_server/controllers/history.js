@@ -18,7 +18,7 @@ export const historyController = async (req, res) => {
 
 export const getAllhistoryController = async (req, res) => {
   try {
-    const files = await History.find();
+    const files = await History.find({ isActive: true });
     res.status(200).send(files);
   } catch (error) {
     res.status(404).send(error.message);
@@ -28,10 +28,13 @@ export const getAllhistoryController = async (req, res) => {
 export const deleteHistoryController = async (req, res) => {
   const { userId: userId } = req.params;
   try {
-    await History.deleteMany({
-      Viewer: userId,
-    });
-    res.status(200).json({ message: "Removed from your watch laters" });
+    await History.updateMany(
+      {
+        Viewer: userId,
+      },
+      { $set: { isActive: false } }
+    );
+    res.status(200).json({ message: "History marked inactive" });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
