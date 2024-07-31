@@ -3,8 +3,6 @@ import mongoose from "mongoose";
 
 export const historyController = async (req, res) => {
   const historyData = req.body;
-
-  //   console.log(likedVideoData);
   const addToHistory = new History(historyData);
 
   try {

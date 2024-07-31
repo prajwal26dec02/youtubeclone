@@ -8,7 +8,7 @@ function DescribeChannel({ Cid, setEditCreateChannelBtn, setVidUploadPage }) {
   const currentChannel = channels.filter((c) => c._id === Cid)[0];
 
   const CurrentUser = useSelector((state) => state?.CurrentUserReducer);
-  console.log(CurrentUser);
+  // console.log(CurrentUser);
   return (
     <div className="container3_channel">
       <div className="channel_logo_channel">

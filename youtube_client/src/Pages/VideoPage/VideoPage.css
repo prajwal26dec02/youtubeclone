@@ -3,6 +3,7 @@
   overflow-y: auto;
   background-color: rgb(11, 11, 11);
   color: white;
+  z-index: 2;
 }
 .container2_videoPage {
   margin: 1.5rem 4.5rem;
@@ -12,12 +13,76 @@
   width: calc(100vw - 4.5rem - 35vw);
   padding: 0 1rem;
 }
+.video_container_videoPage {
+  position: relative;
+}
 .video_ShowVideo_videoPage {
   padding: 0.1rem;
   height: 70vh;
   width: 100%;
   background-color: black;
   border: 1px solid rgba(37, 37, 37, 0.2);
+}
+.rewind_notification,
+.forward_notification {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  z-index: 999;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.rewind_notification.fullscreen,
+.forward_notification.fullscreen {
+  position: fixed;
+  top: 50%;
+}
+
+.rewind_notification.show,
+.forward_notification.show {
+  opacity: 1;
+}
+
+.rewind_notification {
+  left: 80px;
+}
+
+.forward_notification {
+  right: 80px;
+}
+
+.rewind_icon,
+.forward_icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rewind_logo,
+.forward_logo {
+  font-size: 24px;
+}
+
+.rewind_text,
+.forward_text {
+  margin-left: 5px;
+}
+.fullscreen_btn_VideoPage {
+  position: absolute;
+  bottom: 7.8%;
+  right: 6.4%;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.fullscreen_btn_VideoPage.show {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+.fullscreen_logo {
+  font-size: 20px;
 }
 .video_btns_title_videoPage_cont {
   border-bottom: 3px solid rgba(245, 222, 179, 0.175);
@@ -72,4 +137,154 @@
 .moreVideoBar {
   width: calc(100vw - 4.5rem - 70vw);
   padding: 0.1rem;
+}
+.fullscreen-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 998;
+  background-color: black;
+}
+.fullscreen-video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 998;
+}
+video::-webkit-media-controls-fullscreen-button {
+  display: none;
+}
+video::-webkit-media-controls-mute-button {
+  display: none;
+}
+video::-webkit-media-controls-volume-slider {
+  display: none;
+  background-color: transparent;
+  color: transparent;
+}
+video::-webkit-media-controls-volume-slider-container {
+  display: none !important;
+  background-color: transparent;
+  color: transparent;
+}
+.small_screen_btn {
+  position: fixed;
+  font-size: 32px;
+  bottom: 4.2%;
+  right: 6%;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.volume_container {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.volume_container.show {
+  opacity: 1;
+}
+.volume_btn {
+  position: absolute;
+  bottom: 7.8%;
+  right: 12%;
+  cursor: pointer;
+}
+.volume_high,
+.volume_muted {
+  font-size: 20px;
+}
+.volume_btn[data-volume-level="high"] .volume_muted {
+  display: none;
+}
+.volume_btn[data-volume-level="muted"] .volume_high {
+  display: none;
+}
+.volume_slider {
+  position: absolute;
+  bottom: 8.4%;
+  right: 16%;
+  width: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: width 0.3s ease, transform 0.3s ease;
+}
+.volume_slider.visible {
+  width: 100px;
+  transform: scaleX(1);
+}
+.fullscreen_btn_VideoPage[fullscreen="false"] .small_screen_btn {
+  display: none;
+}
+.volume_btn.fullscreen {
+  position: fixed;
+  bottom: 4.5%;
+  right: 11%;
+  cursor: pointer;
+  z-index: 999;
+}
+.volume_high.fullscreen,
+.volume_muted.fullscreen {
+  font-size: 28px;
+}
+.volume_slider.fullscreen {
+  z-index: 999;
+  position: fixed;
+  bottom: 6%;
+  right: 14%;
+}
+.playpause_notification {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  font-size: 52px;
+  transform: translate(-50%);
+  opacity: 0;
+}
+.playpause_notification.fullscreen {
+  z-index: 999;
+}
+.playpause_notification.show {
+  opacity: 1;
+}
+.playpause_notification[status="pause"] .pause_logo {
+  display: none;
+}
+.playpause_notification[status="play"] .play_logo {
+  display: none;
+}
+.speed_notification {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0px 10px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.speed_notification.fullscreen {
+  z-index: 999;
+}
+.speed_notification.show {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+.speed_icon {
+  font-size: 20px;
+}
+.weather_popup {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(11, 11, 11, 0.4);
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
